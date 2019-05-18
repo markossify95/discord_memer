@@ -12,13 +12,18 @@ sys.path.append(os.getcwd())
 
 from sof_client.protocol import SOFClientProtocol
 
+import yaml
+
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename='../../logs/discord.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
-AUTH_TOKEN = 'NTcxNDYwMDMzNzk2Mzc0NTQz.XMOKAw.6ZB-CZ1XXOoRE8XrmHm3fP_PKuQ'
+with open("../config.yml", 'r') as ymlfile:
+    cfg = yaml.safe_load(ymlfile)
+
+AUTH_TOKEN = cfg['DISCORD_TOKEN']
 DEFAULT_EXTENSION = 'jpg'
 
 
